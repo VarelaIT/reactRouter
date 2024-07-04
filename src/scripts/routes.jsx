@@ -6,7 +6,7 @@ import DepartmentsComponent from "../components/departments";
 const tabs= [
   {
     title: "Static data",
-    uri: "/"
+    uri: "/static"
   },
   {
     title: "Party",
@@ -21,11 +21,11 @@ const tabs= [
 const rootTabs = [
   {
     title: "Categories",
-    uri: "/"
+    uri: "/static/categories"
   },
   {
     title: "Departments",
-    uri: "/departments"
+    uri: "/static/departments"
   },
 ]
 
@@ -33,45 +33,45 @@ const rootTabs = [
 export const router = createBrowserRouter([
   {
     path: "/",
-    element: <Drawer tabList={tabs}><Outlet/></Drawer>,
+    element: <Drawer tabList={tabs} />,
     children: [
       {
-        path: "",
-        element: <Drawer tabList={rootTabs}><Outlet/></Drawer>,
+        path: "static",
+        element: <Drawer tabList={rootTabs} />,
         children: [
           {
             path: "",
-            element: <CategoriesComponent/>
-          }
-        ]
-      },
-      {
-        path: "departments",
-        element: <Drawer tabList={rootTabs}><Outlet/></Drawer>,
-        children: [
+            element: <section></section>,
+          },
           {
-            path: "",
-            element: <DepartmentsComponent/>
+            path: "departments",
+            element: <DepartmentsComponent />
+          },
+          {
+            path: "categories",
+            element: <CategoriesComponent />
           }
         ]
       },
-    ],
+    ]
   },
   {
-    path: "/party",
-    element: <Drawer tabList={tabs}><Outlet/></Drawer>,
+    path: "/party", //party
+    element: <Drawer tabList={tabs}/>,
     children: [
       {
         path: "",
-        element: <Drawer tabList={rootTabs}><Outlet/></Drawer>
+        element: <h1>Helo from party</h1>
       },
     ],
   },
   {
     path: "/rules",
-    element: <Drawer tabList={tabs}><Outlet/></Drawer>,
+    element: <Drawer tabList={tabs}/>,
     children: [
       {
+        path: "",
+        element: <h1>Helo from rules</h1>
       },
     ],
   },

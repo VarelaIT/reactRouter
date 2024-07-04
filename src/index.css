@@ -15,3 +15,8 @@ body{
 ul{
     list-style: none;
 }
+
+.tabActive{
+    background-color: #444;
+    color: #fff;
+}

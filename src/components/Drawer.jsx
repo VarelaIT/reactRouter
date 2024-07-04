@@ -1,19 +1,25 @@
+import { Outlet } from "react-router-dom";
 import Tab from "./Tab"
+import { useState } from "react";
 
-export default function Drawer({tabList, children}){
+export default function Drawer({tabList}){
+    const [route, setRoute] = useState(location.pathname);
+
+    const mystyle = {
+        display: "flex",
+        flexDirection: "row",
+        gap: "1px",
+        height: "30px",
+        overflow: "hidden",
+    };
+
     return (
         <section style={{height: "100%"}}>
             <div 
-                style={{
-                    display: "flex",
-                    flexDirection: "row",
-                    gap: "1px",
-                    height: "30px",
-                    overflow: "hidden",
-                }}
+                style={mystyle}
             >
                 {tabList.map((tab, i) => {
-                    return (<Tab key={"tabs" + i} title={tab.title} uri={tab.uri} />)
+                    return (<Tab key={"tabs" + i} title={tab.title} uri={tab.uri} route={route} setRoute={setRoute}/>)
                 })}
             </div>
             <div 
@@ -23,7 +29,7 @@ export default function Drawer({tabList, children}){
                     border: "solid 1px #222",
                 }}
             >
-                {children}
+                <Outlet/>
             </div>
         </section>
     );
